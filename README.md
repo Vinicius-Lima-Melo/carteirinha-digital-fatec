@@ -1,5 +1,6 @@
 # Carteirinha Digital Fatec
 
-Projeto desenvolvido para o TG da Fatec de Tatuí.
+Projeto de Trabalho de Graduação - FATEC Tatuí
 
-A ideia do projeto é facilitar a vida do aluno disponibilizando a carteirinha de estudante de forma rápida, segura e gratuita. 
+
+Este projeto tem como objetivo facilitar a vida do aluno disponibilizando a carteirinha de estudante de forma rápida, segura e gratuita. 
