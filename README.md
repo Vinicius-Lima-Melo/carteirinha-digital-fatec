@@ -7,8 +7,6 @@ Este projeto tem como objetivo facilitar a vida do aluno disponibilizando a cart
 
 ## Instalação
 
-Instale my-project com npm
-
 ```bash
     npm install -g @angular/cli
     npm install -g @ionic/cli
