@@ -1,5 +1,7 @@
 {
   "name": "carteirinha-digital-fatec",
-  "integrations": {},
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "angular"
 }
