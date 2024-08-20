@@ -18,6 +18,10 @@ const routes: Routes = [
   {
     path: 'access-validation',
     loadChildren: () => import('./access-validation/access-validation.module').then( m => m.AccessValidationPageModule)
+  },
+  {
+    path: 'validate-student',
+    loadChildren: () => import('./validate-student/validate-student.module').then( m => m.ValidateStudentPageModule)
   }
 ];
 

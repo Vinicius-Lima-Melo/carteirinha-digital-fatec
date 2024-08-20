@@ -10,6 +10,7 @@ export class AppComponent {
   public appPages = [
     { title: 'Carteirinha Digital', url: '/home', icon: 'id-card' },
     { title: 'Solicitar Carteirinha', url: '/folder/inbox', icon: 'today' },
+    { title: 'Validar Carteirinha', url: '/validate-student', icon: 'qr-code' },
   ];
   constructor(private loginService: LoginService, private loadingCtrl: LoadingController, private navCtrl: NavController) {}
 

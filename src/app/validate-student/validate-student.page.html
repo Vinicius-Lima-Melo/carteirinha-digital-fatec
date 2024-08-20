@@ -1,0 +1,44 @@
+
+<div class="ion-page" id="main-content">
+
+  <div class="header-menu">
+    <ion-menu-button color="light" mode="start"></ion-menu-button>
+  </div>
+
+
+  <ion-content class="ion-padding"
+  >
+
+    <h3>Escaneie o QrCode</h3>
+
+    <div class="box-qrcode" [ngClass]="{'invalid-animation': invalidStudent, 'valid-animation': validStudent}">
+      <div *ngIf="!action.isStart" class="preview"></div>
+      <ngx-scanner-qrcode #action="scanner" #scan (data)="output = $event"></ngx-scanner-qrcode>
+    </div>
+
+    <h4 *ngIf="validStudent">Acesso válido</h4>
+    <h4 *ngIf="invalidStudent">Acesso inválido</h4>
+    <h4 style="font-size: 16px;">{{ output }}</h4>
+    <!-- <h4 style="font-size: 16px;" *ngIf="action.data.value.length">{{ action.data.value[0].value | json }}</h4> -->
+
+
+    <!-- <ion-button expand="block" color="danger" style="margin-top: 32px;">Próximo</ion-button> -->
+    <ion-button expand="block" color="danger" style="margin-top: 32px;" (click)="action.isStart ? action.stop() : action.start()">{{action.isStart ? 'Stop' : 'Start'}}</ion-button>
+
+
+    <!-- data  -->
+
+    <!-- {{action.data.value | async | json}} -->
+    <!-- <span style="font-size: 16px;" *ngIf="action.data.value.length">{{ action.data.value[0].value | json }}</span> -->
+    <br>
+    <!-- <span style="font-size: 16px;">{{ action.data | async | json }}</span>async -->
+
+    <!-- Loading -->
+    <p *ngIf="action.isLoading">⌛ Loading...</p>
+
+    <!-- start -->
+    <!-- <button (click)="action.isStart ? action.stop() : action.start()">{{action.isStart ? 'Stop' : 'Start'}}</button> -->
+
+  </ion-content>
+
+</div>
