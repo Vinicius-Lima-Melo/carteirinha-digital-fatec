@@ -1,8 +1,9 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { AlertController } from '@ionic/angular';
+import { AlertController, ModalController } from '@ionic/angular';
 import { BarcodeFormat } from '@zxing/library';
 import { NgxScannerQrcodeComponent } from 'ngx-scanner-qrcode';
 import { first } from 'rxjs';
+import { ModalValidStudentComponent } from '../modal-valid-student/modal-valid-student.component';
 
 @Component({
   selector: 'app-validate-student',
@@ -16,17 +17,22 @@ export class ValidateStudentPage implements OnInit {
   lastData = null
   validStudent = false
   invalidStudent = false
-  constructor(private alertController: AlertController) {
-  }
+  carteirinhas_validas = [
+    {ra: '123', name: 'João', image: 'estudante_joao.jpg'},
+    {ra: '321', name: 'Maria', image: 'estudante_maria.jpg'},
+  ];
+
+  constructor(private alertController: AlertController, private modalController: ModalController) { }
 
   ngOnInit() {
-    console.log(this.scan)
     this.scan.data.subscribe((data: any) => {
       if(data.length > 0 && data[0].value !== this.lastData){
         this.lastData = data[0].value
         this.output = data[0].value
-        if(this.output === '123456'){
-          this.showSuccessAnimation()
+        let check = this.carteirinhas_validas.filter((carteirinha) => carteirinha.ra === this.output)
+        if(check.length > 0){
+          // this.showSuccessAnimation()
+          this.openModalValidStudent(check[0])
         }
         else{
           this.showErrorAnimation()
@@ -78,6 +84,20 @@ export class ValidateStudentPage implements OnInit {
       buttons: ['OK'],
     });
     await alert.present();
+  }
+
+  openModalValidStudent(student: any){
+    this.modalController.create({
+      component: ModalValidStudentComponent,
+      componentProps: {
+        student: student
+      }
+    }).then(modal => {
+      modal.present();
+    })
+    this.lastData = null
+    this.validStudent = false
+    this.output = null
   }
 
 }

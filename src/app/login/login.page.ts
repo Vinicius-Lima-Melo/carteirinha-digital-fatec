@@ -38,7 +38,7 @@ export class LoginPage implements OnInit {
   }
 
   ngOnInit() {
-   
+
   }
 
 
@@ -52,9 +52,10 @@ export class LoginPage implements OnInit {
     }).then(loadingEl => {
       loadingEl.present();
       let login = this.form.value.login;
-    
 
-      this.loginService.login(login, this.form.value.password).subscribe(() => {
+
+      this.loginService.login(login, this.form.value.password).subscribe((a) => {
+        debugger
         this.loginService.profile().pipe(skipWhile(user => !user), first()).subscribe((user: any) => {
             if(user) {
               localStorage.setItem('login', login);
@@ -72,7 +73,7 @@ export class LoginPage implements OnInit {
       );
     });
   }
-  
+
   async presentAlert(msg: string) {
       const alert = await this.alertController.create({
         header: msg,
