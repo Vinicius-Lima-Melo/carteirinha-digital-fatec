@@ -9,8 +9,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
+<<<<<<< HEAD
         <meta-data android:name="com.google.mlkit.vision.DEPENDENCIES" android:value="barcode_ui"/>
 
+=======
+>>>>>>> 5c2cc5fa59c75966f274b7ea2f6e2ee68689c7a8
         <activity
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|smallestScreenSize|screenLayout|uiMode"
             android:name=".MainActivity"
@@ -39,7 +42,10 @@
 
     <!-- Permissions -->
 
+<<<<<<< HEAD
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.FLASHLIGHT"/>
+=======
+>>>>>>> 5c2cc5fa59c75966f274b7ea2f6e2ee68689c7a8
     <uses-permission android:name="android.permission.INTERNET" />
 </manifest>

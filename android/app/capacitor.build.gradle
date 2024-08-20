@@ -9,9 +9,13 @@ android {
 
 apply from: "../capacitor-cordova-android-plugins/cordova.variables.gradle"
 dependencies {
+<<<<<<< HEAD
     implementation project(':capacitor-mlkit-barcode-scanning')
     implementation project(':capacitor-app')
     implementation project(':capacitor-barcode-scanner')
+=======
+    implementation project(':capacitor-app')
+>>>>>>> 5c2cc5fa59c75966f274b7ea2f6e2ee68689c7a8
     implementation project(':capacitor-haptics')
     implementation project(':capacitor-keyboard')
     implementation project(':capacitor-status-bar')

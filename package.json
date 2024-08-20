@@ -49,7 +49,11 @@
     "@angular/cli": "^17.0.0",
     "@angular/compiler-cli": "^17.0.2",
     "@angular/language-service": "^17.0.2",
+<<<<<<< HEAD
     "@capacitor/cli": "6.1.2",
+=======
+    "@capacitor/cli": "6.0.0",
+>>>>>>> 5c2cc5fa59c75966f274b7ea2f6e2ee68689c7a8
     "@ionic/angular-toolkit": "^11.0.1",
     "@types/jasmine": "~5.1.0",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
