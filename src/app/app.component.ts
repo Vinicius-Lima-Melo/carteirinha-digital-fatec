@@ -11,6 +11,7 @@ export class AppComponent {
     { title: 'Carteirinha Digital', url: '/home', icon: 'id-card' },
     { title: 'Solicitar Carteirinha', url: '/folder/inbox', icon: 'today' },
     { title: 'Validar Carteirinha', url: '/validate-student', icon: 'qr-code' },
+    { title: 'Gestão de Alunos', url: '/students', icon: 'newspaper' },
   ];
   constructor(private loginService: LoginService, private loadingCtrl: LoadingController, private navCtrl: NavController) {}
 

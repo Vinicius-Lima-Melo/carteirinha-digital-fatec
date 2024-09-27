@@ -22,6 +22,10 @@ const routes: Routes = [
   {
     path: 'validate-student',
     loadChildren: () => import('./validate-student/validate-student.module').then( m => m.ValidateStudentPageModule)
+  },
+  {
+    path: 'students',
+    loadChildren: () => import('./students/students.module').then( m => m.StudentsPageModule)
   }
 ];
 
