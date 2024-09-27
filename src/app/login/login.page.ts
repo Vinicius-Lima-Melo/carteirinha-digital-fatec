@@ -55,22 +55,35 @@ export class LoginPage implements OnInit {
 
 
       this.loginService.login(login, this.form.value.password).subscribe((a) => {
-        debugger
+        if(!a){
+          loadingEl.dismiss();
+          this.presentAlert('Credenciais incorretas e/ou login inexistente');
+          return
+        }
         this.loginService.profile().pipe(skipWhile(user => !user), first()).subscribe((user: any) => {
+          debugger
             if(user) {
-              localStorage.setItem('login', login);
-              localStorage.setItem('password', this.form.value.password);
               this.form.reset();
               loadingEl.dismiss();
-              this.navCtrl.navigateForward(['/', 'home']);
+              if(+user.type === 2){
+                this.navCtrl.navigateForward(['/', 'students']);
+              }else{
+                this.navCtrl.navigateForward(['/', 'home']);
+              }
+            }
+            else{
+              loadingEl.dismiss();
+              this.presentAlert('Credenciais incorretas e/ou login inexistente');
             }
           });
-        },
-        (err: any) => {
+        },(err: any) => {
           loadingEl.dismiss();
           this.presentAlert('Credenciais incorretas e/ou login inexistente');
         }
-      );
+      ), (err: any) => {
+        loadingEl.dismiss();
+        this.presentAlert('Credenciais incorretas e/ou login inexistente');
+      };
     });
   }
 

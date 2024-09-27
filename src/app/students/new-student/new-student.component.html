@@ -1,3 +1,74 @@
-<p>
-  new-student works!
-</p>
+<div class="container">
+
+  <div>
+    <button style="margin-right: 16px;" (click)="csvReader.click()">Importar lista de alunos</button>
+    <button (click)="downloadPlanilha()">Baixar planilha exemplo</button>
+    <input type="file" style="display: none" #csvReader name="Upload CSV" id="txtFileUpload" (change)="uploadListener($event)" accept=".csv" />
+  </div>
+  <div style="color: black;">
+    <div *ngIf="novosAlunos.length > 0"
+      style="width: 100%; padding: 0 0 10px ; max-height: 450px; overflow: auto; margin: 0 auto; border-radius: 10px; background-color: #e6e6e6;">
+
+
+      <div
+        style="width: 100%; padding: 10px; box-sizing: border-box; display: flex; justify-content: space-between; align-items: center;">
+        <h4 align="center" style="margin: 0">Dados recebidos</h4>
+        <button style="padding: 6px 10px; border: 0; font-size: 12px; color:#FFF; background-color: #1b1c51; cursor: pointer; border-radius: 6px">Enviar
+          dados
+        </button>
+      </div>
+
+      <div
+        style="width: 100%; display: flex; justify-content: space-between; box-sizing: border-box; align-items: flex-end; padding: 0 10px;">
+        <span style="font-size: 12px; color: #5b5b5b; ">{{novosAlunos.length}} alunos</span>
+      </div>
+
+
+
+
+      <table style="width: 100%; border: none;">
+        <thead>
+          <tr style="background-color: #cbcbcb;">
+            <th style="text-align: center; height: 30px;">N°</th>
+            <th style="text-align: center; height: 30px;">Nome</th>
+            <th style="text-align: center; height: 30px;">CPF</th>
+            <th style="text-align: center; height: 30px;">RG</th>
+            <th style="text-align: center; height: 30px;">Opções</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="row-table" style="height: 30px">
+            <td style="font-size: 13px; text-align: center">0</td>
+            <td style="font-size: 13px; text-align: center; text-transform: uppercase;">
+              <input class="input-lista"
+                style="border:0; outline: none; border-radius: 4px; font-size: 12px; padding: 2px 4px;"
+                formControlName="name" type="text">
+            </td>
+            <td style="font-size: 13px; text-align: center;">
+              <!-- <input [ngStyle]="{'border': form_lista.get('cpf').errors?.invalid ? '1px solid red' : '0' }"
+                class="input-lista"
+                style="border:0; outline: none; border-radius: 4px; font-size: 12px; padding: 2px 4px; width: 80px;"
+                formControlName="cpf"> -->
+            </td>
+            <td style="font-size: 13px; text-align: center;">
+              <input class="input-lista"
+                style="border:0; outline: none; border-radius: 4px; font-size: 12px; padding: 2px 4px; width: 80px;"
+                formControlName="rg" type="number">
+            </td>
+            <td style="font-size: 13px; text-align: center;">
+          </tr>
+          <tr class="row-table" *ngFor="let nc of novosAlunos; let idx = index" style="height: 30px">
+            <td style="font-size: 13px; text-align: center">{{idx+1}}</td>
+            <td style="font-size: 13px; text-align: center; text-transform: uppercase;">{{nc.name}}</td>
+            <td style="font-size: 13px; text-align: center;">{{nc.cpf}}</td>
+            <td style="font-size: 13px; text-align: center;">{{nc.rg}}</td>
+          </tr>
+        </tbody>
+      </table>
+
+
+    </div>
+
+  </div>
+
+</div>
