@@ -14,7 +14,11 @@ export class AccessValidationPage implements OnInit {
 
   ngOnInit() {
     if(this.checkIfUserIsLogged()){
-      this.navCtrl.navigateRoot('/home');
+      if(localStorage.getItem('type') == '1'){
+        this.navCtrl.navigateRoot('/home');
+      }else{
+        this.navCtrl.navigateRoot('/students');
+      }
     }
     else{
       this.navCtrl.navigateRoot('/login');
@@ -22,7 +26,7 @@ export class AccessValidationPage implements OnInit {
   }
 
   checkIfUserIsLogged() {
-    return localStorage.getItem('login') && localStorage.getItem('password') ? true : false;
+    return localStorage.getItem('id') && localStorage.getItem('name') ? true : false;
   }
 
 }

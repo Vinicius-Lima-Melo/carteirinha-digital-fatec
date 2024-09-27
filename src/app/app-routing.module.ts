@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { LoginGuard } from './login/login.guard';
 
 const routes: Routes = [
   {
@@ -9,6 +10,7 @@ const routes: Routes = [
   },
   {
     path: 'home',
+    canActivate: [LoginGuard],
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
   },
   {
@@ -21,10 +23,12 @@ const routes: Routes = [
   },
   {
     path: 'validate-student',
+    canActivate: [LoginGuard],
     loadChildren: () => import('./validate-student/validate-student.module').then( m => m.ValidateStudentPageModule)
   },
   {
     path: 'students',
+    canActivate: [LoginGuard],
     loadChildren: () => import('./students/students.module').then( m => m.StudentsPageModule)
   }
 ];

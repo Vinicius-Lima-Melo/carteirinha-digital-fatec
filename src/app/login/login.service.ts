@@ -8,14 +8,31 @@ export class LoginService {
 
   users = [
     {
-      id: 0,
+      id: 1,
       type: 1,
-      name: "Aluno de Teste",
+      name: "Joao",
       login: 'aluno',
-      senha: '123'
+      senha: '123',
+      uuid: '123'
     },
     {
-      id: 0,
+      id: 1,
+      type: 1,
+      name: "Maria",
+      login: 'aluno2',
+      senha: '123',
+      uuid: '321'
+    },
+    {
+      id: 2,
+      type: 1,
+      name: "Aluno Fake",
+      login: 'fake',
+      senha: '123',
+      uuid: '111'
+    },
+    {
+      id: 3,
       type: 2,
       name: "Admin de Teste",
       login: 'admin',
@@ -37,6 +54,7 @@ export class LoginService {
     localStorage.setItem('id', user.id)
     localStorage.setItem('type', user.type)
     localStorage.setItem('name', user.name)
+    localStorage.setItem('uuid', user.uuid)
     return of(true);
   }
   profile() {
@@ -45,11 +63,13 @@ export class LoginService {
       id: localStorage.getItem('id'),
       type: localStorage.getItem('type'),
       name: localStorage.getItem('name'),
+      uuid: localStorage.getItem('uuid'),
     })
     return of({
       id: localStorage.getItem('id'),
       type: localStorage.getItem('type'),
       name: localStorage.getItem('name'),
+      uuid: localStorage.getItem('uuid'),
     })
   }
   logout() {
@@ -59,6 +79,7 @@ export class LoginService {
     localStorage.removeItem('id')
     localStorage.removeItem('type')
     localStorage.removeItem('name')
+    localStorage.removeItem('uuid')
     return of(true);
   }
 }

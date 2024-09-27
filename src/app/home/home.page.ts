@@ -16,6 +16,10 @@ export class HomePage implements OnInit {
       this.user = profile
       debugger
     })
+    // this.loginService.user$.subscribe(v =>{
+    //   console.log("User data changed", v)
+    //   this.user = v
+    // })
   }
 
 }

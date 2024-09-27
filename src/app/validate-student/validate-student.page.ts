@@ -12,6 +12,11 @@ import { ModalValidStudentComponent } from '../modal-valid-student/modal-valid-s
 })
 export class ValidateStudentPage implements OnInit {
   @ViewChild('scan', { static: true }) scan: ElementRef<any> | any;
+  @ViewChild(NgxScannerQrcodeComponent)
+  scanner?: NgxScannerQrcodeComponent;
+  devices: any
+  logs:any
+  backCam = null
 
   output!: any
   lastData = null
@@ -21,11 +26,43 @@ export class ValidateStudentPage implements OnInit {
     {ra: '123', name: 'João', image: 'estudante_joao.jpg'},
     {ra: '321', name: 'Maria', image: 'estudante_maria.jpg'},
   ];
+  awaitAnimation = false
 
   constructor(private alertController: AlertController, private modalController: ModalController) { }
 
   ngOnInit() {
+    navigator.mediaDevices.getUserMedia( {video: true } )
+    .then( ( stream ) => {
+      try{
+        this.scan.devices.subscribe((devices: any) => {
+          console.log("devices", devices)
+          this.devices = devices
+          const device = devices.find((f:any) => (/back|trás|rear|traseira|environment|ambiente/gi.test(f.label))) ?? devices.pop();
+          console.log(device)
+          if(device){
+            this.backCam = device.deviceId
+            this.scan.stop()
+            this.scan.playDevice(device.deviceId);
+          }
+          this.logs = device
+          // this.scanner.playDevice(device.deviceId);
+        }); // or subscribe
+        // debugger
+
+      } catch(e){
+        alert("Nao foi possivel usar a camera traseira")
+      }
+    },
+    e => {
+        alert("sem permissao")
+
+    } );
+
+
+
     this.scan.data.subscribe((data: any) => {
+      console.log("await", this.awaitAnimation)
+      if(this.awaitAnimation) return
       if(data.length > 0 && data[0].value !== this.lastData){
         this.lastData = data[0].value
         this.output = data[0].value
@@ -55,11 +92,13 @@ export class ValidateStudentPage implements OnInit {
     console.log("sucesso")
   }
   showErrorAnimation(){
+    this.awaitAnimation = true
     this.invalidStudent = true
     setTimeout(() => {
       this.lastData = null
       this.invalidStudent = false
       this.output = null
+      this.awaitAnimation = false
     }, 3000);
     console.log("erro")
   }
@@ -87,6 +126,7 @@ export class ValidateStudentPage implements OnInit {
   }
 
   openModalValidStudent(student: any){
+    this.awaitAnimation = true
     this.modalController.create({
       component: ModalValidStudentComponent,
       componentProps: {
@@ -94,10 +134,16 @@ export class ValidateStudentPage implements OnInit {
       }
     }).then(modal => {
       modal.present();
+      modal.onDidDismiss().then(() => this.awaitAnimation = false)
     })
+
     this.lastData = null
     this.validStudent = false
     this.output = null
   }
 
+  refreshCam(){
+    this.scan.stop()
+    this.scan.playDevice(this.backCam);
+  }
 }

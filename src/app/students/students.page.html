@@ -1,13 +1,19 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>students</ion-title>
-  </ion-toolbar>
-</ion-header>
 
-<ion-content [fullscreen]="true">
+
+<div class="ion-page" id="main-content">
+
+  <div class="header-menu">
+    <ion-menu-button color="light" mode="start"></ion-menu-button>
+  </div>
+
+
+  <ion-content class="ion-padding">
+
     <ion-button expand="block" color="danger" style="margin-top: 32px;" [routerLink]="['add-student']">
       <ion-icon name="add"></ion-icon>
       Adicionar alunos
     </ion-button>
     <h4>tabela alunos</h4>
-</ion-content>
+  </ion-content>
+
+</div>

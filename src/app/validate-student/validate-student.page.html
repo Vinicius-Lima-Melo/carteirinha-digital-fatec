@@ -9,6 +9,16 @@
   <ion-content class="ion-padding"
   >
 
+  {{logs | json}}
+  <button (click)="refreshCam()">Refresh Back Camera</button>
+  <ion-item>
+    <ion-select aria-label="fruit" placeholder="Select device">
+      <ion-select-option *ngFor="let d of devices" [value]="d.deviceId">{{d.deviceId}}</ion-select-option>
+      <!-- <ion-select-option value="oranges">Oranges</ion-select-option> -->
+      <!-- <ion-select-option value="bananas">Bananas</ion-select-option> -->
+    </ion-select>
+  </ion-item>
+
     <h3>Escaneie o QrCode</h3>
 
     <div class="box-qrcode" [ngClass]="{'invalid-animation': invalidStudent, 'valid-animation': validStudent}">
